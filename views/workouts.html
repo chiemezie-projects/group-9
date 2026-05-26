@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage your workout routines">
+  <title>Workouts | Workout Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="/dashboard" class="logo">💪 <span>FitTrack</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/workouts" class="active">Workouts</a></li>
+      <li><a href="/timer">Timer</a></li>
+      <li><a href="/progress">Progress</a></li>
+      <li><span class="nav-user" id="navUser"></span></li>
+      <li><a href="#" class="btn-logout" id="logoutBtn">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <h1>My Workouts</h1>
+        <p style="color:var(--text-secondary);margin-top:4px;">Create and manage your workout routines</p>
+      </div>
+      <button class="btn btn-primary btn-sm" id="addWorkoutBtn" style="width:auto;">+ Add Workout</button>
+    </div>
+
+    <!-- Workout List -->
+    <div class="workout-list" id="workoutList">
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Workout Modal -->
+  <div class="modal-overlay" id="workoutModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Workout</h2>
+        <button class="modal-close" id="modalClose">&times;</button>
+      </div>
+
+      <div id="modalAlert" class="alert alert-error"></div>
+
+      <form id="workoutForm">
+        <input type="hidden" id="workoutId">
+
+        <div class="form-group">
+          <label for="title">Workout Title</label>
+          <input type="text" id="title" name="title" placeholder="e.g. Morning Run" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+              <option value="">Select category</option>
+              <option value="HIIT">HIIT</option>
+              <option value="Running">Running</option>
+              <option value="Cardio">Cardio</option>
+              <option value="Strength">Strength</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="duration">Duration (min)</label>
+            <input type="number" id="duration" name="duration" placeholder="30" min="1" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="dayOfWeek">Day of the Week</label>
+          <select id="dayOfWeek" name="dayOfWeek" required>
+            <option value="">Select day</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="notes">Notes (optional)</label>
+          <textarea id="notes" name="notes" placeholder="Any additional notes..."></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" id="cancelBtn">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm" style="width:auto;" id="saveBtn">Save Workout</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/auth.js"></script>
+  <script src="/js/workouts.js"></script>
+</body>
+</html>
